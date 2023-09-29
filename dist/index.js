@@ -1,5 +1,15 @@
 "use strict";
 {
+    const logPerson = (person) => {
+        let information;
+        if (person.role) {
+            information = person.role;
+        }
+        else {
+            information = person.group;
+        }
+        console.log(`${person.name}, ${person.age}, ${information}`);
+    };
     const persons = [
         {
             name: "Иван Петров",
@@ -21,16 +31,14 @@
             name: "Дружище",
             age: 30,
             group: "Друг",
+            role: "Friends",
         },
         {
             name: "Батя",
             age: 45,
             group: "Семья",
-            role: "Admin",
+            role: "SuperAdmin",
         },
     ];
-    console.log("Users:");
-    persons.forEach((logPerson) => {
-        console.log(`${logPerson.name}, ${logPerson.age}, ${logPerson.role ? logPerson.role : ""}`);
-    });
+    persons.forEach(logPerson);
 }

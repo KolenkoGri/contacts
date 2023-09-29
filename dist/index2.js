@@ -1,34 +1,38 @@
 "use strict";
-const persons = [
-    {
-        name: "Иван Петров",
-        age: 27,
-        group: "SEO-специалист",
-    },
-    {
-        name: "Марат Aляуддинов",
-        age: 20,
-        group: "Музыкант",
-    },
-    {
-        name: "Алладин",
-        age: 1000,
-        group: "Мультфильм",
-        role: "Admin",
-    },
-    {
-        name: "Дружище",
-        age: 30,
-        group: "Друг",
-    },
-    {
-        name: "Батя",
-        age: 45,
-        group: "Семья",
-        role: "Admin",
-    },
-];
-const logPerson = (user) => {
-    console.log(`${user.name}, ${user.age}`);
-};
-persons.forEach(logPerson);
+{
+    const persons = [
+        {
+            type: "admin",
+            name: "Иван Петров",
+            age: 27,
+            role: "Administrator",
+        },
+        {
+            type: "user",
+            name: "Марат Aляуддинов",
+            age: 20,
+            group: "музыкант",
+        },
+    ];
+    const isAdmin = (person) => {
+        return person.type === "admin";
+    };
+    const isUser = (person) => {
+        return person.type === "user";
+    };
+    const logPerson = (person) => {
+        let information = "";
+        if (isAdmin(person)) {
+            information = person.role;
+        }
+        if (isUser(person)) {
+            information = person.group;
+        }
+        console.log(` - ${person.name}, ${person.age}, ${information}`);
+    };
+    console.log("Admins:");
+    persons.filter(isAdmin).forEach(logPerson);
+    console.log();
+    console.log("Users:");
+    persons.filter(isUser).forEach(logPerson);
+}

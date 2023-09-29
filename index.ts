@@ -1,6 +1,24 @@
-{type User = { name: string; age: number; group: string; role?: string };
+{interface User {
+  name: string;
+  age: number;
+  group: string;
+}
 
-const persons: User[] = [
+interface Person extends User {
+  role?: string;
+}
+
+const logPerson = (person: Person): void => {
+  let information: string;
+  if (person.role) {
+    information = person.role;
+  } else {
+    information = person.group;
+  }
+  console.log(`${person.name}, ${person.age}, ${information}`);
+};
+
+const persons: Person[] = [
   {
     name: "Иван Петров",
     age: 27,
@@ -21,20 +39,15 @@ const persons: User[] = [
     name: "Дружище",
     age: 30,
     group: "Друг",
+    role: "Friends",
   },
   {
     name: "Батя",
     age: 45,
     group: "Семья",
-    role: "Admin",
+    role: "SuperAdmin",
   },
 ];
 
-console.log("Users:");
-persons.forEach((logPerson): void => {
-  console.log(
-    `${logPerson.name}, ${logPerson.age}, ${
-      logPerson.role ? logPerson.role : ""
-    }`
-  );
-});}
+persons.forEach(logPerson);
+}
