@@ -1,4 +1,4 @@
-type User = { name: string; age: number; group: string; role?: string };
+{type User = { name: string; age: number; group: string; role?: string };
 
 const persons: User[] = [
   {
@@ -37,4 +37,4 @@ persons.forEach((logPerson): void => {
       logPerson.role ? logPerson.role : ""
     }`
   );
-});
+});}
