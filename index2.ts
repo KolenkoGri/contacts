@@ -1,4 +1,4 @@
-type User = {
+{type User = {
     name: string;
     age: number;
     group: string;
@@ -48,4 +48,4 @@ const logPerson = (user: User) => {
   console.log(`${user.name}, ${user.age}`);
 };
 
-persons.forEach(logPerson);
+persons.forEach(logPerson);}
