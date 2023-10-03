@@ -1,46 +1,66 @@
 "use strict";
-{
-    class Job {
-        _role;
-        _salary;
-        constructor(role, salary) {
-            this._role = role;
-            this._salary = salary;
-        }
-        work(personName) {
-            console.log(`${personName} сейчас работает как ${this._role}`);
-        }
-        getSalaryInfo() {
-            return this._salary;
-        }
-    }
-    class Person {
-        job;
-        name;
-        constructor(name, job) {
-            this.name = name;
-            this.job = job;
-        }
-        set jobChange(NewJob) {
-            this.job = NewJob;
-        }
-        getSalary() {
-            return this.job.getSalaryInfo();
-        }
-        work() {
-            this.job.work(this.name);
-        }
-    }
-    const teacher = new Job("Учитель", 25_000);
-    const doctor = new Job("Доктор", 30000);
-    const Ivan = new Person("Иван", teacher);
-    const Olga = new Person("Ольга", doctor);
-    console.log("teacher: ", teacher);
-    console.log("doctorPers: ", doctor);
-    Ivan.work();
-    console.log(Ivan.getSalary());
-    Olga.work();
-    Olga.jobChange = doctor;
-    console.log(Olga);
-    console.log(Olga.getSalary());
-}
+Object.defineProperty(exports, "__esModule", { value: true });
+const students_1 = require("./students");
+const staff_1 = require("./staff");
+const students = new students_1.Students();
+const employees = new staff_1.Employees();
+students.add({
+    id: 1,
+    firstname: "Maks",
+    surname: "Leskin",
+    age: 22,
+    year: 2,
+    specialty: "asd",
+});
+students.add({
+    id: 2,
+    firstname: "Maks",
+    surname: "Leskin",
+    age: 23,
+    year: 3,
+    specialty: "aswd",
+});
+students.add({
+    id: 3,
+    firstname: "Maks",
+    surname: "Leskin",
+    age: 24,
+    year: 4,
+    specialty: "aswd",
+});
+students.add({
+    id: 4,
+    firstname: "Maks",
+    surname: "Leskin",
+    age: 26,
+    year: 1,
+    specialty: "asswd",
+});
+students.add({
+    id: 5,
+    firstname: "Maks",
+    surname: "Leskin",
+    age: 25,
+    year: 3,
+    specialty: "aaswd",
+});
+employees.add({
+    id: 1,
+    firstname: "Maks",
+    surname: "Leskin",
+    age: 26,
+    post: "worker",
+});
+employees.add({
+    id: 2,
+    firstname: "Maks",
+    surname: "Leskin",
+    age: 26,
+    post: "Teacher",
+});
+console.log(students);
+console.log(employees);
+students.remove(2);
+console.log(students);
+console.log(students.get(3));
+console.log(employees.get(2));

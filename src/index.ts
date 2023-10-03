@@ -1,56 +1,76 @@
-{
-  class Job {
-    protected _role: string;
-    protected _salary: number;
+import { Students } from "./students";
+import { Employees } from "./staff";
 
-    constructor(role: string, salary: number) {
-      this._role = role;
-      this._salary = salary;
-    }
+const students = new Students();
+const employees = new Employees();
 
-    public work(personName: string): void {
-      console.log(`${personName} сейчас работает как ${this._role}`);
-    }
-    getSalaryInfo() {
-      return this._salary;
-    }
-  }
+students.add({
+    id: 1,
+    firstname: "Ilon",
+    surname: "Mask",
+    age: 22,
+    year: 2,
+    specialty: "asd",
+});
 
-  class Person {
-    protected job: Job;
-    protected name: string;
+students.add({
+    id: 2,
+    firstname: "Ilon",
+    surname: "Mask",
+    age: 23,
+    year: 3,
+    specialty: "aswd",
+});
 
-    constructor(name: string, job: Job) {
-      this.name = name;
-      this.job = job;
-    }
+students.add({
+    id: 3,
+    firstname: "Ilon",
+    surname: "Mask",
+    age: 24,
+    year: 4,
+    specialty: "aswd",
+});
 
-    set jobChange(NewJob: Job) {
-      this.job = NewJob;
-    }
+students.add({
+    id: 4,
+    firstname: "Ilon",
+    surname: "Mask",
+    age: 26,
+    year: 1,
+    specialty: "asswd",
+});
 
-    getSalary() {
-      return this.job.getSalaryInfo();
-    }
+students.add({
+    id: 5,
+    firstname: "Ilon",
+    surname: "Mask",
+    age: 25,
+    year: 3,
+    specialty: "aaswd",
+});
 
-    work(): void {
-      this.job.work(this.name);
-    }
-  }
+employees.add({
+    id: 1,
+    firstname: "Ilon",
+    surname: "Mask",
+    age: 26,
+    post: "worker",
+});
 
-  const teacher: Job = new Job("Учитель", 25_000);
-  const doctor: Job = new Job("Доктор", 30000);
+employees.add({
+    id: 2,
+    firstname: "Ilon",
+    surname: "Mask",
+    age: 26,
+    post: "Teacher",
+});
 
-  const Ivan: Person = new Person("Иван", teacher);
-  const Olga: Person = new Person("Ольга", doctor);
+console.log(students);
+console.log(employees);
 
-  console.log("teacher: ", teacher);
-  console.log("doctorPers: ", doctor);
+students.remove(2);
 
-  Ivan.work();
-  console.log(Ivan.getSalary());
-  Olga.work();
-  Olga.jobChange = doctor;
-  console.log(Olga);
-  console.log(Olga.getSalary());
-}
+console.log(students);
+
+console.log(students.get(3));
+console.log(employees.get(2));
