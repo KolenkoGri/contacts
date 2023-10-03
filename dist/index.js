@@ -1,44 +1,46 @@
 "use strict";
 {
-    const logPerson = (person) => {
-        let information;
-        if (person.role) {
-            information = person.role;
+    class Job {
+        _role;
+        _salary;
+        constructor(role, salary) {
+            this._role = role;
+            this._salary = salary;
         }
-        else {
-            information = person.group;
+        work(personName) {
+            console.log(`${personName} сейчас работает как ${this._role}`);
         }
-        console.log(`${person.name}, ${person.age}, ${information}`);
-    };
-    const persons = [
-        {
-            name: "Иван Петров",
-            age: 27,
-            group: "SEO-специалист",
-        },
-        {
-            name: "Марат Aляуддинов",
-            age: 20,
-            group: "Музыкант",
-        },
-        {
-            name: "Алладин",
-            age: 1000,
-            group: "Мультфильм",
-            role: "Admin",
-        },
-        {
-            name: "Дружище",
-            age: 30,
-            group: "Друг",
-            role: "Friends",
-        },
-        {
-            name: "Батя",
-            age: 45,
-            group: "Семья",
-            role: "SuperAdmin",
-        },
-    ];
-    persons.forEach(logPerson);
+        getSalaryInfo() {
+            return this._salary;
+        }
+    }
+    class Person {
+        job;
+        name;
+        constructor(name, job) {
+            this.name = name;
+            this.job = job;
+        }
+        set jobChange(NewJob) {
+            this.job = NewJob;
+        }
+        getSalary() {
+            return this.job.getSalaryInfo();
+        }
+        work() {
+            this.job.work(this.name);
+        }
+    }
+    const teacher = new Job("Учитель", 25_000);
+    const doctor = new Job("Доктор", 30000);
+    const Ivan = new Person("Иван", teacher);
+    const Olga = new Person("Ольга", doctor);
+    console.log("teacher: ", teacher);
+    console.log("doctorPers: ", doctor);
+    Ivan.work();
+    console.log(Ivan.getSalary());
+    Olga.work();
+    Olga.jobChange = doctor;
+    console.log(Olga);
+    console.log(Olga.getSalary());
 }
